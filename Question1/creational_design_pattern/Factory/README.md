@@ -38,15 +38,15 @@ Below is a simple flowchart that describes the workflow of the **Factory Design 
  | Type Based on Input    |
  +-----------+-----------+
              |
-   +---------+---------+
-   |                   |
-   v                   v
-+-----------+     +-----------+
-| SMSNotification|  | EmailNotification |
-+-----------+     +-----------+
-             |
-             v
- +-----------+-----------+
- | notifyUser() Called    |
- | Sends Notification     |
+   +---------+---------+--------------------------+
+   |                   |                          |
+   v                   v                          v
++-----------+     +-----------+            +----------------+
+| SMSNotification|  | EmailNotification |  | PushNotification  |
++-----------+     +-----------+            +-----------------+
+             |        |                           |
+             v        v                           |
+ +-----------+-----------+                        |
+ | notifyUser() Called    |                       |
+ | Sends Notification     |<----------------------+
  +-----------------------+
