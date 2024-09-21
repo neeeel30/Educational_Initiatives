@@ -16,6 +16,4 @@ The Composite pattern is a structural design pattern that allows you to compose 
 - **Simplicity:** Clients can work with a uniform interface for both individual objects and compositions.
 - **Flexibility:** You can create complex structures by nesting composites without changing the client code.
 
-## Conclusion
 
-Both the Adapter and Composite patterns enhance the flexibility and maintainability of your code by providing solutions to common design problems. The Adapter pattern facilitates integration between incompatible interfaces, while the Composite pattern simplifies the management of complex object structures.
