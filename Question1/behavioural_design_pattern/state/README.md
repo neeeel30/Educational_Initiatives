@@ -1,28 +1,44 @@
 # State Pattern: Document Review Example
 
 ## Overview
-The **State Pattern** allows an object to change its behavior when its internal state changes. This pattern is particularly useful when an object has different behaviors that depend on its current state. The object (in this case, a document) delegates behavior to the current state, allowing it to operate differently in different states (e.g., Draft, Review, or Published).
+The **State Pattern** allows an object to change its behavior based on its internal state. In this example, the `Document` transitions between several states: `DraftState`, `ReviewState`, and `PublishedState`. Each state encapsulates the behavior relevant to that phase of the document’s lifecycle, and the transitions ensure that the document behaves correctly in each state.
 
-### Use Case
-In this example, a `Document` moves through several states: `DraftState`, `ReviewState`, and `PublishedState`. Each state dictates what actions are allowed (e.g., editing, submitting for review, or publishing).
+### What It Has
 
-### Workflow
+1. **Document (Context)**:
+   - The `Document` class is the main context that tracks the current state of the document and delegates behavior to the state.
+   - It starts in the `DraftState`, allowing editing and submission for review.
+   - As the document transitions to `ReviewState` and eventually `PublishedState`, different behaviors are applied. For instance, in the `ReviewState`, editing is restricted, and the document can either be approved or returned to draft.
 
-1. **Context Initialization**: A `Document` starts in the `DraftState`. In this state, the document can be edited freely.
-   
-2. **State Transition**: When the document is ready for review, it transitions to the `ReviewState`. In this state, the document can no longer be edited but can be reviewed by authorized personnel.
+2. **State Interface and Implementations**:
+   - The `State` interface defines the core behaviors for editing, submitting, reviewing, and publishing.
+   - Each concrete state (`DraftState`, `ReviewState`, `PublishedState`) implements the state interface, providing state-specific logic.
+   - This encapsulates behavior in each state class, adhering to **Single Responsibility Principle** and making the system easy to extend.
 
-3. **State-Specific Behavior**: Each state has its own specific behavior. For example, in the `DraftState`, the document can be edited, but in the `PublishedState`, no changes are allowed.
+3. **Gold Standards**:
+   - **State Transition Logic**: Transitions between states are handled seamlessly by calling transition methods (e.g., `review()`, `publish()`), which are guarded with checks to ensure valid transitions.
+   - **Logging and Exception Handling**: The system logs all significant actions (state transitions, document edits) and includes detailed exception handling for invalid operations (e.g., trying to edit a published document).
+   - **Optimized and Scalable**: State transitions are efficient, and each state handles its behavior independently, which makes the system easy to scale as more states (e.g., `ArchivedState`) are introduced.
+   - **Defensive Programming**: Each state checks if the operations requested are valid in the current state, ensuring robustness and avoiding unexpected errors.
 
-4. **Seamless Transitions**: The `Document` can transition from one state to another based on certain conditions, such as when a draft is submitted for review or when a reviewed document is approved for publishing.
+### How It Is Implemented
 
-### Entities and Realtionships
+- **State Transitions**:
+  - The `Document` starts in the `DraftState`, where it can be edited freely. When the document is ready for review, it transitions to `ReviewState`.
+  - In the `ReviewState`, the document can no longer be edited but can be reviewed and either approved (transitioning to `PublishedState`) or sent back to draft.
+  - In the `PublishedState`, no further changes are allowed, and the document is considered final.
 
-- **Document (Context)**: The main entity that manages its state and delegates behavior to the current state.
-- **States (Draft, Review, Published)**: The `Document` can be in one of these states at any given time. Each state implements specific behavior for the document (e.g., editing, reviewing, publishing).
-- **State Transitions**: The `Document` can transition between different states (e.g., from `DraftState` to `ReviewState`), depending on conditions and operations performed.
+- **State-Specific Behavior**:
+  - Each state handles document behavior in a different way.
+  - Each state is responsible for managing its behavior, ensuring that the `Document` class remains clean and easy to maintain.
 
-### Benefits of the State Pattern
-- **Simplified Control Flow**: The pattern avoids complex conditional statements for state management. Instead, the state-specific behavior is encapsulated within each state class.
-- **Single Responsibility Principle**: Each state class is responsible for handling the behavior related to that particular state.
-- **Maintainability**: Adding or modifying states can be done independently without affecting the rest of the system.
+- **Key Decisions**:
+  - Using the **State Pattern** here ensures that behavior is tied directly to the document's current state, rather than relying on complex conditional logic in the `Document` class.
+  - The design provides a clean separation of concerns, where each state encapsulates the logic for that phase of the document lifecycle.
+  - The `Document` class simply delegates tasks to the current state, adhering to the **Open-Closed Principle** by allowing new states to be added without modifying the existing state logic.
+
+- **Why This Design?**
+  - The State Pattern is ideal for scenarios where an object needs to behave differently depending on its state.
+  - By separating behavior into state-specific classes, we ensure that the `Document` class remains maintainable and scalable.
+  - This design is easy to extend: for example, adding an `ArchivedState` or other future states can be done without modifying the existing code.
+  - The system supports robust exception handling, validation, and performance optimization, ensuring that invalid operations are gracefully handled.
