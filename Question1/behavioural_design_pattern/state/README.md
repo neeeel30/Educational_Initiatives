@@ -17,7 +17,6 @@ The **State Pattern** allows an object to change its behavior based on its inter
 
 3. **Gold Standards**:
    - **State Transition Logic**: Transitions between states are handled seamlessly by calling transition methods (e.g., `review()`, `publish()`), which are guarded with checks to ensure valid transitions.
-   - **Logging and Exception Handling**: The system logs all significant actions (state transitions, document edits) and includes detailed exception handling for invalid operations (e.g., trying to edit a published document).
    - **Optimized and Scalable**: State transitions are efficient, and each state handles its behavior independently, which makes the system easy to scale as more states (e.g., `ArchivedState`) are introduced.
    - **Defensive Programming**: Each state checks if the operations requested are valid in the current state, ensuring robustness and avoiding unexpected errors.
 
