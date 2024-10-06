@@ -29,9 +29,6 @@ The Adapter pattern in this implementation serves to integrate a third-party pay
 ### Long-term Program Execution:
 - The design avoids hardcoding constructs like `while(true)` loops. User inputs are managed gracefully through a continuous input-gathering loop, with proper exit conditions defined.
   
-### Logging & Exception Handling:
-- The program includes **logging** to track payment operations and adapter invocations, and it uses **exception handling** to catch and handle issues like payment failures, gateway timeouts, or transient errors.
-
 ### Defensive Programming:
 - The adapter ensures that all inputs are validated before calling the third-party gateway to prevent invalid data from being processed.
 - Defensive programming practices like null checks and validations are applied, protecting against unforeseen errors.
