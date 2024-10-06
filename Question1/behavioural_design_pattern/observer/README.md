@@ -16,7 +16,6 @@ The **Observer Pattern** establishes a one-to-many relationship between a subjec
 
 3. **Gold Standards**:
    - **No Infinite Loops**: The design avoids any `while(true)` infinite loops for gathering user input. Instead, input is handled using proper methods.
-   - **Logging and Exception Handling**: Exception handling and logging are implemented using standard Java `try-catch` blocks. For example, invalid stock price updates throw an exception, and all significant actions (like stock price updates and investor notifications) are logged for future tracking and debugging.
    - **Performance Optimizations**: The system uses efficient collection types to store and notify observers. Observer notifications are handled asynchronously for better performance, especially when dealing with large numbers of observers.
    - **Defensive Programming**: Methods in the `Stock` class check for null values and ensure that observers are only notified when actual changes occur, avoiding redundant notifications.
 
