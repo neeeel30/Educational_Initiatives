@@ -30,10 +30,6 @@ The Composite pattern is used here to model a graphical user interface (GUI) wit
 ### Long-term Program Execution:
 - User inputs are gathered in a continuous and controlled manner without hardcoding infinite loops. The system can dynamically accept shapes and draw the hierarchy as needed.
 
-### Logging & Exception Handling:
-- **Logging** is implemented at critical points, such as when shapes are added to a composite or when the `draw()` method is called.
-- **Exception handling** covers scenarios like attempting to draw an invalid shape or adding unsupported types to the composite.
-
 ### Defensive Programming:
 - Every method call is guarded by input validations, ensuring that null or malformed objects are never added to a composite.
 - The composite structure also performs sanity checks to ensure that no circular references exist (e.g., preventing a composite from being added to itself).
